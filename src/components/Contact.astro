@@ -31,8 +31,9 @@
             <span class="font-medium">+62 895-3757-29040</span>
           </a>
           <a
+            id="email-link"
             class="flex items-center gap-4 text-on-surface hover:text-primary transition-colors group"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=lukitoawangnugroho@gmail.com"
+            href="#"
           >
             <span
               class="material-symbols-outlined p-3 bg-surface-container rounded-xl group-hover:bg-surface-container-high transition-colors"
@@ -40,6 +41,26 @@
             >
             <span class="font-medium">lukitoawangnugroho@gmail.com</span>
           </a>
+
+          <script>
+            const emailLink = document.getElementById("email-link");
+
+            emailLink?.addEventListener("click", (e) => {
+              const isMobile =
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                  navigator.userAgent,
+                );
+
+              if (isMobile) {
+                window.location.href = "mailto:lukitoawangnugroho@gmail.com";
+              } else {
+                window.open(
+                  "https://mail.google.com/mail/?view=cm&fs=1&to=lukitoawangnugroho@gmail.com",
+                  "_blank",
+                );
+              }
+            });
+          </script>
         </div>
 
         <!-- Social Connections -->
