@@ -1,0 +1,128 @@
+---
+
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm"
+>
+  <nav
+    class="flex justify-between items-center px-6 md:px-20 py-4 max-w-7xl mx-auto relative"
+  >
+    <div class="flex items-center gap-3">
+      <span
+        class="font-display-lg text-body-lg font-bold tracking-tighter text-on-surface"
+      >
+        Lukito Awang Nugroho
+      </span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8">
+      <a
+        class="text-on-surface-variant font-medium hover:text-on-surface transition-colors font-label-sm text-label-sm"
+        href="#about">Tentang Saya</a
+      >
+      <a
+        class="text-on-surface-variant font-medium hover:text-on-surface transition-colors font-label-sm text-label-sm"
+        href="#skills">Keahlian</a
+      >
+      <a
+        class="text-on-surface-variant font-medium hover:text-on-surface transition-colors font-label-sm text-label-sm"
+        href="#experience">Pengalaman Kerja</a
+      >
+    </div>
+
+    <a
+      class="hidden md:block bg-primary text-on-primary-container px-6 py-2.5 rounded-full font-bold hover:opacity-90 transition-all scale-95 duration-200 ease-in-out font-label-sm text-label-sm"
+      href="#contact"
+    >
+      Hubungi Saya
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="menu-btn"
+      class="md:hidden text-on-surface relative z-50 p-2 focus:outline-none"
+      aria-label="Toggle Menu"
+    >
+      <span id="menu-icon" class="material-symbols-outlined block text-2xl"
+        >menu</span
+      >
+    </button>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div
+    id="mobile-drawer"
+    class="fixed inset-y-0 right-0 w-4/5 max-w-sm bg-surface-container/95 backdrop-blur-2xl border-l border-outline-variant/20 z-40 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col justify-center px-8 py-16 gap-8 md:hidden"
+  >
+    <div class="flex flex-col gap-6 text-left">
+      <a
+        class="mobile-link text-on-surface-variant font-medium hover:text-on-surface transition-colors text-lg"
+        href="#about">Tentang Saya</a
+      >
+      <a
+        class="mobile-link text-on-surface-variant font-medium hover:text-on-surface transition-colors text-lg"
+        href="#skills">Keahlian</a
+      >
+      <a
+        class="mobile-link text-on-surface-variant font-medium hover:text-on-surface transition-colors text-lg"
+        href="#experience">Pengalaman Kerja</a
+      >
+      <a
+        class="mobile-link text-on-surface-variant font-medium hover:text-on-surface transition-colors text-lg"
+        href="#contact">Kontak</a
+      >
+    </div>
+    <a
+      class="mobile-link bg-primary text-on-primary-container text-center py-3.5 rounded-full font-bold hover:opacity-90 transition-all text-base mt-4"
+      href="#contact"
+    >
+      Hire Me
+    </a>
+  </div>
+
+  <!-- Backdrop Overlay -->
+  <div
+    id="drawer-backdrop"
+    class="fixed inset-0 bg-background/60 backdrop-blur-sm z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+  >
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menuIcon = document.getElementById("menu-icon");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  const drawerBackdrop = document.getElementById("drawer-backdrop");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileDrawer?.classList.remove("translate-x-full");
+      drawerBackdrop?.classList.remove("opacity-0", "pointer-events-none");
+      drawerBackdrop?.classList.add("opacity-100");
+      if (menuIcon) menuIcon.textContent = "close";
+      document.body.style.overflow = "hidden"; // Prevent scroll background
+    } else {
+      mobileDrawer?.classList.add("translate-x-full");
+      drawerBackdrop?.classList.remove("opacity-100");
+      drawerBackdrop?.classList.add("opacity-0", "pointer-events-none");
+      if (menuIcon) menuIcon.textContent = "menu";
+      document.body.style.overflow = ""; // Re-enable scroll
+    }
+  }
+
+  menuBtn?.addEventListener("click", toggleMenu);
+  drawerBackdrop?.addEventListener("click", toggleMenu);
+
+  // Close drawer when clicking links
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+</script>
